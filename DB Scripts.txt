@@ -1,0 +1,21 @@
+CREATE TABLE USERS (
+username varchar(50) NOT NULL,
+password varchar(50) NOT NULL,
+enabled TINYINT NOT NULL DEFAULT 1,
+PRIMARY KEY (username));
+
+
+CREATE TABLE USER_ROLES (
+user_role_id int(11) NOT NULL AUTO_INCREMENT,
+username varchar(50) NOT NULL,
+role varchar(50) NOT NULL,
+PRIMARY KEY (user_role_id),
+UNIQUE KEY uni_username_role (role, username),
+CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES USERS (username));
+
+insert into users(username, password, enabled) values ('vinodh','password',true);
+insert into users(username, password, enabled) values ('saurabh','pass',true);
+
+insert into user_roles (username, role) values('vinodh', 'ROLE_USER');
+insert into user_roles (username, role) values('vinodh', 'ROLE_ADMIN');
+insert into user_roles (username, role) values('saurabh', 'ROLE_USER');
